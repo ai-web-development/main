@@ -1,0 +1,56 @@
+.outer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* index.css의 --bg(body 배경)와 다른 배경으로 박스 강조 */
+  background: color-mix(in srgb, var(--bg) 85%, var(--border) 15%);
+}
+
+/* 중앙 page-box: max 800px, 정확히 100vh → 내부만 스크롤 */
+.pageBox {
+  width: 100%;
+  max-width: 800px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border-inline: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* Body: 남은 공간 차지 + 이 영역만 스크롤 */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.body::-webkit-scrollbar {
+  width: 6px;
+}
+.body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.body::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* 모바일: 박스가 전체 너비 */
+@media (max-width: 768px) {
+  .outer {
+    background: var(--bg);
+  }
+  .pageBox {
+    max-width: 100%;
+    border-inline: none;
+    box-shadow: none;
+  }
+  .body {
+    padding: 0.75rem 1rem;
+  }
+}
