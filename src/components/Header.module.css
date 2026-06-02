@@ -1,0 +1,82 @@
+.header {
+  height: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* 로고 (왼쪽) */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  height: 1.6rem;
+  width: auto;
+  display: block;
+}
+
+.logoText {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.3px;
+}
+
+/* 네비게이션 (오른쪽) */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.navLink {
+  color: #fad12ccb;               
+  font-size: 0.9rem;
+  font-weight: bold;            
+  text-decoration: none;
+  transition: color 0.15s ease;
+  position: relative;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--accent);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem;
+  }
+  .nav {
+    gap: 1rem;
+  }
+  .navLink {
+    font-size: 0.85rem;
+  }
+}
