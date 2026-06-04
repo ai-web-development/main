@@ -2,6 +2,12 @@ import type { Category, Question } from '../../../context/QuestionContext';
 import { useQuestions } from '../../../context/QuestionContext';
 import './QuestionList.css';
 
+const STAR_COLORS: Record<Category, string> = {
+  '감정의 별': '#d92b3a',
+  '이성의 별': '#5bafc5',
+  '상상의 별': '#9b71c8',
+};
+
 type Props = {
   questions: Question[];
   accentColor: string;
@@ -20,13 +26,17 @@ const QuestionList = ({ questions, accentColor, currentCategory }: Props) => {
       {questions.map((q) => {
         const isRandom = q.sentTo[0] !== currentCategory;
         const fromStar = isRandom ? q.sentTo[0] : null;
+        const alsoSentTo = !isRandom ? q.sentTo[1] : null;
 
         return (
           <li key={q.id} className="ql-item" style={{ borderLeftColor: accentColor }}>
             <div className="ql-header">
               <div className="ql-header-left">
-                {isRandom && (
-                  <span className="ql-random-badge">✦ {fromStar}에서 랜덤 전달</span>
+                {isRandom && fromStar && (
+                  <span className="ql-random-badge">✦ <span style={{ color: STAR_COLORS[fromStar] }}>{fromStar}</span>에서 날아온 질문</span>
+                )}
+                {!isRandom && alsoSentTo && (
+                  <span className="ql-random-badge">✦ <span style={{ color: STAR_COLORS[alsoSentTo] }}>{alsoSentTo}</span>에도 닿았어요</span>
                 )}
               </div>
               <button
