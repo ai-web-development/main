@@ -39,13 +39,15 @@ const QuestionList = ({ questions, accentColor, currentCategory }: Props) => {
                   <span className="ql-random-badge">✦ <span style={{ color: STAR_COLORS[alsoSentTo] }}>{alsoSentTo}</span>에도 닿았어요</span>
                 )}
               </div>
-              <button
-                className="ql-delete-btn"
-                onClick={() => removeQuestion(q.id)}
-                aria-label="질문 삭제"
-              >
-                ✕
-              </button>
+              {!q.isInitial && (
+                <button
+                  className="ql-delete-btn"
+                  onClick={() => removeQuestion(q.id)}
+                  aria-label="질문 삭제"
+                >
+                  ✕
+                </button>
+              )}
             </div>
             <p className="ql-title">{q.title}</p>
             <p className="ql-text">{q.text}</p>
