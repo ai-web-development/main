@@ -93,3 +93,111 @@
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+.ql-answer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.ql-answer-item {
+  position: relative;
+  border-radius: 10px;
+  padding: 0.85rem 0.95rem;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ql-answer-item {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.ql-answer-text {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+.ql-answer-delete {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.7rem;
+  border: none;
+  background: transparent;
+  color: rgba(75, 85, 99, 0.7);
+  font-size: 0.85rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.15rem;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.ql-answer-delete:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+}
+
+.ql-answer-section {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.ql-answer-textarea {
+  width: 100%;
+  min-height: 90px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 0.85rem 0.95rem;
+  resize: vertical;
+  background: var(--code-bg, #f6f5ee);
+  color: var(--text-h);
+  font-size: 0.9rem;
+  font-family: inherit;
+  line-height: 1.55;
+}
+
+.ql-answer-textarea::placeholder {
+  color: var(--text);
+  opacity: 0.4;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.ql-answer-textarea:focus {
+  outline: none;
+  border-color: rgba(96, 165, 250, 0.8);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.12);
+}
+
+.ql-answer-btn {
+  align-self: flex-end;
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font-size: 0.88rem;
+  background: rgba(99, 102, 241, 0.12);
+  color: #4b5563;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, opacity 0.15s;
+  opacity: 0.65;
+}
+
+.ql-answer-btn.is-ready {
+  background: #6366f1;
+  color: #fff;
+  opacity: 1;
+}
+
+.ql-answer-btn:disabled {
+  cursor: not-allowed;
+}

@@ -1,4 +1,5 @@
-import type { Category, Question } from '../../../context/QuestionContext';
+import { useState } from 'react';
+import type { Answer, Category, Question } from '../../../context/QuestionContext';
 import { useQuestions } from '../../../context/QuestionContext';
 import './QuestionList.css';
 
@@ -15,7 +16,20 @@ type Props = {
 };
 
 const QuestionList = ({ questions, accentColor, currentCategory }: Props) => {
-  const { removeQuestion } = useQuestions();
+  const { removeQuestion, addAnswer, removeAnswer } = useQuestions();
+  const [drafts, setDrafts] = useState<Record<string, string>>({});
+
+  const handleDraftChange = (questionId: string, value: string) => {
+    setDrafts((prev) => ({ ...prev, [questionId]: value }));
+  };
+
+  const handleSubmitAnswer = (questionId: string) => {
+    const answerText = drafts[questionId]?.trim();
+    if (!answerText) return;
+
+    addAnswer(questionId, answerText, currentCategory);
+    setDrafts((prev) => ({ ...prev, [questionId]: '' }));
+  };
 
   if (questions.length === 0) {
     return <p className="ql-empty">아직 도착한 질문이 없어요 🌌</p>;
@@ -27,6 +41,8 @@ const QuestionList = ({ questions, accentColor, currentCategory }: Props) => {
         const isRandom = q.sentTo[0] !== currentCategory;
         const fromStar = isRandom ? q.sentTo[0] : null;
         const alsoSentTo = !isRandom ? q.sentTo[1] : null;
+        const draft = drafts[q.id] ?? '';
+        const canReply = draft.trim().length > 0;
 
         return (
           <li key={q.id} className="ql-item" style={{ borderLeftColor: accentColor }}>
@@ -51,6 +67,45 @@ const QuestionList = ({ questions, accentColor, currentCategory }: Props) => {
             </div>
             <p className="ql-title">{q.title}</p>
             <p className="ql-text">{q.text}</p>
+
+            {q.answers.filter((answer) => answer.category === currentCategory).length > 0 && (
+              <div className="ql-answer-list">
+                {q.answers
+                  .filter((answer) => answer.category === currentCategory)
+                  .map((answer: Answer) => (
+                    <div key={answer.id} className="ql-answer-item">
+                      <p className="ql-answer-text">{answer.text}</p>
+                      <button
+                        type="button"
+                        className="ql-answer-delete"
+                        onClick={() => removeAnswer(q.id, answer.id)}
+                        aria-label="답변 삭제"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            )}
+
+            <div className="ql-answer-section">
+              <textarea
+                className="ql-answer-textarea"
+                placeholder="이 질문에 답변을 작성해보세요…"
+                value={draft}
+                rows={3}
+                onChange={(e) => handleDraftChange(q.id, e.target.value)}
+                maxLength={240}
+              />
+              <button
+                className={`ql-answer-btn ${canReply ? 'is-ready' : ''}`}
+                type="button"
+                onClick={() => handleSubmitAnswer(q.id)}
+                disabled={!canReply}
+              >
+                답변 등록
+              </button>
+            </div>
           </li>
         );
       })}
