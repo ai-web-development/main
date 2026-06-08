@@ -23,7 +23,8 @@ const QuestionList = ({ questions, accentColor, currentCategory }: Props) => {
     setDrafts((prev) => ({ ...prev, [questionId]: value }));
   };
 
-  const handleSubmitAnswer = (questionId: string) => {
+  const handleSubmitAnswer = (questionId: string, isInitial?: boolean) => {
+    if (!isInitial) return; // prevent answering non-initial (user-created) questions
     const answerText = drafts[questionId]?.trim();
     if (!answerText) return;
 
@@ -88,24 +89,28 @@ const QuestionList = ({ questions, accentColor, currentCategory }: Props) => {
               </div>
             )}
 
-            <div className="ql-answer-section">
-              <textarea
-                className="ql-answer-textarea"
-                placeholder="이 질문에 답변을 작성해보세요…"
-                value={draft}
-                rows={3}
-                onChange={(e) => handleDraftChange(q.id, e.target.value)}
-                maxLength={240}
-              />
-              <button
-                className={`ql-answer-btn ${canReply ? 'is-ready' : ''}`}
-                type="button"
-                onClick={() => handleSubmitAnswer(q.id)}
-                disabled={!canReply}
-              >
-                답변 등록
-              </button>
-            </div>
+            {q.isInitial ? (
+              <div className="ql-answer-section">
+                <textarea
+                  className="ql-answer-textarea"
+                  placeholder="이 질문에 답변을 작성해보세요…"
+                  value={draft}
+                  rows={3}
+                  onChange={(e) => handleDraftChange(q.id, e.target.value)}
+                  maxLength={240}
+                />
+                <button
+                  className={`ql-answer-btn ${canReply ? 'is-ready' : ''}`}
+                  type="button"
+                  onClick={() => handleSubmitAnswer(q.id, q.isInitial)}
+                  disabled={!canReply}
+                >
+                  답변 등록
+                </button>
+              </div>
+            ) : (
+              <p className="ql-no-answer">직접 작성한 질문에는 답변을 달 수 없습니다.</p>
+            )}
           </li>
         );
       })}

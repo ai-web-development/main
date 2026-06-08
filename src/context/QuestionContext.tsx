@@ -77,7 +77,7 @@ export const QuestionProvider = ({ children }: { children: ReactNode }) => {
 
   const addQuestion = (q: Omit<Question, 'id' | 'answers'>) => {
     setQuestions((prev) => [
-      { ...q, id: crypto.randomUUID(), answers: [] },
+      { ...q, id: crypto.randomUUID(), answers: [], isInitial: false },
       ...prev,
     ]);
   };
