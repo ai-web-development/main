@@ -1,3 +1,11 @@
+/* -> css 파일 주석 처리 방법
+  1. 전역 CSS 변수 정의
+  2. 다크모드 지원
+  3. 브라우저 기본값 초기화 및 전역 기반 스타일
+  -> main.tsx에서 이 파일을 import하면 전체 앱에 적용 가능!
+  -> npm create vite@latest로 생성된 프로젝트에서 기본적으로 import 되어 있는 src/index.css 그래도 사용
+*/
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
