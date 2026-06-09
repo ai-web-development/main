@@ -3,13 +3,16 @@
 import { RouterProvider } from 'react-router-dom' // 라우터 기능을 제공하는 컴포넌트
 import router from './routes/router'
 import { QuestionProvider } from './context/QuestionContext' // 질문과 관련된 상태를 관리하는 Context Provider
+import { AnswerProvider } from './context/AnswerContext'
 
 // 감싸기 구조: 부모가 자식을 감싸면, 부모가 가진 능력(데이터나 기능)을 자식들이 물려받아 사용할 수 있음)
 // QuestionProvider가 가장 바깥애서 전체 앱을 감싸고 있기 떄문에 그 안에 실행되는 모든 페이지 컴포너트들은 QuestionProvider가 제공하는 상태와 기능을 사용할 수 있음.
 function App() {
   return (
     <QuestionProvider>
-      <RouterProvider router={router} />
+      <AnswerProvider>
+        <RouterProvider router={router} />
+      </AnswerProvider>
     </QuestionProvider>
   )
 }
