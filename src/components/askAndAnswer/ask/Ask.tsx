@@ -2,11 +2,12 @@ import { useState } from 'react';
 import './Ask.css';
 import { useQuestions } from '../../../context/QuestionContext';
 import type { Category } from '../../../context/QuestionContext';
+import categories from '../../../data/categories.json';
 
 const CATEGORIES: { label: Category; icon: string; color: string }[] = [
-  { label: '감정의 별', icon: '💫', color: 'cat-emotion' },
-  { label: '이성의 별', icon: '🌙', color: 'cat-reason' },
-  { label: '상상의 별', icon: '✨', color: 'cat-imagination' },
+  { label: categories.emotion,     icon: '💫', color: 'cat-emotion' },
+  { label: categories.reason,      icon: '🌙', color: 'cat-reason' },
+  { label: categories.imagination, icon: '✨', color: 'cat-imagination' },
 ];
 
 // 내가 선택한 별을 제외한 나머지 중 무작위 1개 반환

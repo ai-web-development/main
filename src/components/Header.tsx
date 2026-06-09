@@ -2,12 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 import logo from '../assets/logo.png';
+import categories from '../data/categories.json';
 
 const NAV_LINKS = [
-  { label: 'HOME',     to: '/' },
-  { label: '감정의 별',  to: '/emotion' },
-  { label: '이성의 별', to: '/reason' },
-  { label: '상상의 별', to: '/imagination' },
+  { label: 'HOME',                  to: '/' },
+  { label: categories.emotion,      to: '/emotion' },
+  { label: categories.reason,       to: '/reason' },
+  { label: categories.imagination,  to: '/imagination' },
 ];
 
 const Header: React.FC = () => {

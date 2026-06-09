@@ -1,12 +1,15 @@
+// 사용자랑 상호작용 - 질문 삭제, 답변 작성/삭제
+
 import { useState } from 'react';
 import type { Answer, Category, Question } from '../../../context/QuestionContext';
 import { useQuestions } from '../../../context/QuestionContext';
 import './QuestionList.css';
+import categories from '../../../data/categories.json';
 
 const STAR_COLORS: Record<Category, string> = {
-  '감정의 별': '#d92b3a',
-  '이성의 별': '#5bafc5',
-  '상상의 별': '#9b71c8',
+  [categories.emotion]:     '#d92b3a',
+  [categories.reason]:      '#5bafc5',
+  [categories.imagination]: '#9b71c8',
 };
 
 type Props = {
@@ -17,7 +20,7 @@ type Props = {
 
 const QuestionList = ({ questions, accentColor, currentCategory }: Props) => {
   const { removeQuestion, addAnswer, removeAnswer } = useQuestions();
-  const [drafts, setDrafts] = useState<Record<string, string>>({});
+  const [drafts, setDrafts] = useState<Record<string, string>>({}); // 업데이트되는 곳
 
   const handleDraftChange = (questionId: string, value: string) => {
     setDrafts((prev) => ({ ...prev, [questionId]: value }));
