@@ -1,0 +1,48 @@
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  min-height: 56px;
+}
+
+/* 저작권 (왼쪽) */
+.copyright {
+  font-size: 0.82rem;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+/* 링크 목록 (오른쪽) */
+.links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.link {
+  font-size: 0.82rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.875rem 1rem;
+    text-align: center;
+  }
+  .links {
+    gap: 1rem;
+  }
+}
