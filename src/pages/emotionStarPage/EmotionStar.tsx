@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import styles from './EmotionStar.module.css';
 import { useQuestions } from '../../context/QuestionContext';
 import QuestionList from '../../components/askAndAnswer/answer/QuestionList';
 import categories from '../../data/categories.json';
 
 const EmotionStar = () => {
+  useEffect(() => {
+    document.title = 'another-star-emotion';
+  }, []);
+
   const { questions } = useQuestions();
   const filtered = questions.filter((q) => q.sentTo.includes(categories.emotion));
 

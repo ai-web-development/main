@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import styles from './ReasonStar.module.css';
 import { useQuestions } from '../../context/QuestionContext';
 import QuestionList from '../../components/askAndAnswer/answer/QuestionList';
 import categories from '../../data/categories.json';
 
 const ReasonStar = () => {
+  useEffect(() => {
+    document.title = 'another-star-reason';
+  }, []);
+
   const { questions } = useQuestions();
   const filtered = questions.filter((q) => q.sentTo.includes(categories.reason));
 
