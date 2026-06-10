@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 import categories from '../data/categories.json';
 
 const NAV_LINKS = [
-  { label: 'HOME',                  to: '/' },
+  { label: categories.home,         to: '/stars' },
   { label: categories.emotion,      to: '/emotion' },
   { label: categories.reason,       to: '/reason' },
   { label: categories.imagination,  to: '/imagination' },

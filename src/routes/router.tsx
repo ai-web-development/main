@@ -3,6 +3,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Layout from '../components/layouts/Layout'
 import Home from '../pages/homePage/Home'
+import StarExplain from '../pages/starexplainPage/StarExplain'
 import EmotionStar from '../pages/emotionStarPage/EmotionStar'
 import ReasonStar from '../pages/reasonStarPage/ReasonStar'
 import ImaginationStar from '../pages/imaginationStarPage/ImaginationStar'
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true,         element: <Home /> },
+      { path: 'stars',       element: <StarExplain /> },
       { path: 'emotion',     element: <EmotionStar /> }, /* emotion이란 이름으로 매핑 */
       { path: 'reason',      element: <ReasonStar /> },
       { path: 'imagination', element: <ImaginationStar /> },

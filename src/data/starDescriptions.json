@@ -1,0 +1,20 @@
+[
+  {
+    "id": "emotion",
+    "emoji": "❤️",
+    "name": "감정의 별",
+    "description": "감정이 듬뿍 담긴 답변을 얻을 수 있다"
+  },
+  {
+    "id": "reason",
+    "emoji": "🔵",
+    "name": "이성의 별",
+    "description": "이성적인 답변을 얻을 수 있다."
+  },
+  {
+    "id": "imagination",
+    "emoji": "✨",
+    "name": "상상의 별",
+    "description": "재밌는 상상이 담긴 답변을 얻을 수 있다."
+  }
+]
